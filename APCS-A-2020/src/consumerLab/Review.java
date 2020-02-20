@@ -20,7 +20,7 @@ public class Review {
   
   static{
     try {
-      Scanner input = new Scanner(new File("src/consumerLab/cleanSentiment.txt"));
+      Scanner input = new Scanner(new File("src/ConsumerLab/cleanSentiment.csv"));
       while(input.hasNextLine()){
         String[] temp = input.nextLine().split(",");
         sentiment.put(temp[0],Double.parseDouble(temp[1]));
@@ -35,7 +35,7 @@ public class Review {
   
   //read in the positive adjectives in postiveAdjectives.txt
      try {
-      Scanner input = new Scanner(new File("src/consumerLab/positiveAdjectives.txt"));
+      Scanner input = new Scanner(new File("src/ConsumerLab/positiveAdjectives.txt"));
       while(input.hasNextLine()){
         String temp = input.nextLine().trim();
         System.out.println(temp);
@@ -49,7 +49,7 @@ public class Review {
  
   //read in the negative adjectives in negativeAdjectives.txt
      try {
-      Scanner input = new Scanner(new File("src/consumerLab/negativeAdjectives.txt"));
+      Scanner input = new Scanner(new File("src/ConsumerLab/negativeAdjectives.txt"));
       while(input.hasNextLine()){
         negAdjectives.add(input.nextLine().trim());
       }
@@ -97,22 +97,23 @@ public class Review {
     {
       return 0;
     }
-  }
+  }//end sentimentVal
+  
+  
   
   /**
    * Returns the ending punctuation of a string, or the empty string if there is none 
    */
-  public static String getPunctuation( String word )
+  public static int getPunctuationIndex( String word )
   { 
-    String punc = "";
-    for(int i=word.length()-1; i >= 0; i--){
+    int pind = -1;
+    for(int i=word.length()-1; i >= 1; i--){
       if(!Character.isLetterOrDigit(word.charAt(i))){
-        punc = punc + word.charAt(i);
-      } else {
-        return punc;
+        pind = i;
+      } 
       }
-    }
-    return punc;
+    
+    return pind;
   }
   
   /** 
@@ -137,13 +138,19 @@ public class Review {
   /** 
    * Randomly picks a positive or negative adjective and returns it.
    */
-  public static String randomAdjective()
+  public static String randomAdjective(int pn)
   {
     boolean positive = Math.random() < .5;
-    if(positive){
+    if(pn==1){
       return randomPositiveAdj();
-    } else {
+    } else if(pn==-1){
       return randomNegativeAdj();
+    }
+    else{
+    	if(positive)
+          return randomPositiveAdj(); 
+    	else
+          return randomNegativeAdj();
     }
   }
 
@@ -153,17 +160,30 @@ public class Review {
   public static double totalSentiment(String filename)
   {
     // read in the file contents into a string using the textToString method with the filename
-
+	  String rev = textToString(filename);
+	  System.out.println(rev);
     // set up a sentimentTotal variable
-
+	  double sentimentTotal = 0;
     // loop through the file contents 
 
        // find each word
+	  int s = 0;
+String[] words = rev.split(" ");
+for(String w : words){
+	if(!Character.isLetterOrDigit(w.charAt(0)))
+		s = 1;
+	int i = getPunctuationIndex(w);
+	if(i==-1)
+		sentimentTotal+=sentimentVal(w.substring(s));
+	
+	else
+		sentimentTotal+=sentimentVal(w.substring(s, i));
+}
+
+
        // add in its sentimentVal
        // set the file contents to start after this word
    
-   
-
 
 
    return sentimentTotal; 
@@ -176,14 +196,37 @@ public class Review {
   public static int starRating(String filename)
   {
     // call the totalSentiment method with the fileName
-
+double sent = totalSentiment(filename);
     // determine number of stars between 0 and 4 based on totalSentiment value 
-    int stars;
+    int stars = 0;
     // write if statements here
-
-
+    if(sent>-1)
+    	stars = 1;
+    if(sent>5)
+    	stars = 2;
+    if(sent>10)
+    	stars = 3;
+    if(sent>15)
+    	stars = 4;
   
     // return number of stars
     return stars; 
+  }
+  
+  
+  public static String fakeReview(String fileName, int pn){
+	String rev = textToString(fileName);
+	int ind = rev.indexOf('*');
+	if (ind==-1)
+		return rev;
+	String fake = "";
+	int start = 0;
+	while(ind!=start-1){
+		fake+=rev.substring(start, ind)+randomAdjective(pn);
+		start = (rev.substring(ind)).indexOf(' ')+ind;
+		ind = (rev.substring(start)).indexOf('*')+start;
+	}
+	fake+=rev.substring(start);
+	return fake;
   }
 }
