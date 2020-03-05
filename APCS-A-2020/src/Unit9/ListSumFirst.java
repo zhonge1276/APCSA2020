@@ -11,6 +11,17 @@ public class ListSumFirst
 {
 	public static int go(List<Integer> ray)
 	{
-		return 0;
+		int sum = 0;
+	    int first = ray.get(0);
+			for (int val : ray) {
+	      if (val > first) {
+	        sum += val;
+	      }
+	    }
+	    if (sum == 0) {
+	      return -1;
+	    } else{
+	      return sum;
+	    }
 	}
 }
