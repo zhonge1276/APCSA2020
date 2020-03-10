@@ -8,16 +8,20 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
-public class ToyStore
+public class ToyStore5
 {
 	private ArrayList<Toy> toyList;
 	
-	public ToyStore(String toys)
+	public ToyStore5(String toys)
 	{
 		toyList = new ArrayList<Toy>();
 		loadToys(toys);
 	}
 
+	public void myName(){
+		System.out.println("Emily Zhong");
+		}
+	
 	public void loadToys( String toys )
 	{
 		Scanner scan = new Scanner(toys);
