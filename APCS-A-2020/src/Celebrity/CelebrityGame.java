@@ -12,23 +12,23 @@ public class CelebrityGame
 	/**
 	 * A reference to a Celebrity or subclass instance.
 	 */
-	public Celebrity option;
 
 	/**
 	 * The GUI frame for the Celebrity game.
 	 */
 
-
 	/**
 	 * The ArrayList of Celebrity values that make up the game
 	 */
-	
 
 	/**
 	 * Builds the game and starts the GUI
 	 */
+	
 	private ArrayList<Celebrity> celebGameList;
+	
 	private Celebrity gameCelebrity;
+	
 	private CelebrityFrame gameWindow;
 	
 	public CelebrityGame()
@@ -56,6 +56,16 @@ public class CelebrityGame
 	 */
 	public boolean processGuess(String guess)
 	{
+		if (guess.equalsIgnoreCase(gameCelebrity.getAnswer())) {
+			celebGameList.remove(0);
+			if(celebGameList.size() == 0) {
+				gameCelebrity = new Celebrity("", "");
+			} 
+			else {
+				gameCelebrity = celebGameList.get(0);
+			}
+			return true;
+		}
 		return false;
 	}
 
@@ -66,7 +76,7 @@ public class CelebrityGame
 	 */
 	public void play()
 	{
-		if (celebGameList != null && celebGameList.size() > 0)
+		if (celebGameList != null && celebGameList.size() > 0 )
 		{
 			this.gameCelebrity = celebGameList.get(0);
 			gameWindow.replaceScreen("GAME");
@@ -86,10 +96,16 @@ public class CelebrityGame
 	 */
 	public void addCelebrity(String name, String guess, String type)
 	{
-		if (validateCelebrity(name) && validateClue(guess, type)) {
-			celebGameList.add(new Celebrity(name, guess));
+		if (type.equals("Literature")) {
+			celebGameList.add(new LiteratureCelebrity(name,  guess ));
 		}
-		
+		else if (type.equals("Dance")) {
+			celebGameList.add(new DanceCelebrity(name,  guess ));
+
+		}
+		else {
+			celebGameList.add(new Celebrity(name,  guess ));
+		}
 	}
 
 	/**
@@ -99,7 +115,7 @@ public class CelebrityGame
 	 */
 	public boolean validateCelebrity(String name)
 	{
-		if (name.length() > 3) {
+		if (name.length() > 3 ) {
 			return true;
 		}
 		return false;
@@ -114,10 +130,37 @@ public class CelebrityGame
 	 */
 	public boolean validateClue(String clue, String type)
 	{
+		boolean validClue = true;
 		if (clue.length() > 9) {
-			return true;
-		}
-		return false;
+			validClue = true;
+			if (type.equalsIgnoreCase("literature")){
+				String[] temp = clue.split(",");
+			
+				if (temp.length > 1){
+					validClue = true;
+				}
+			
+				else {
+					validClue = false;
+				}
+			}
+			else if (type.equalsIgnoreCase("dance")) {
+				String[] temp = clue.split(",");
+				
+				if (temp.length > 1){
+					validClue = true;
+				}
+			
+				else {
+					validClue = false;
+				}
+			}
+		}	
+		return validClue;
+		
+	
+		//You will need to add an else if condition here fo or your subclass
+		
 	}
 
 	/**
@@ -127,7 +170,7 @@ public class CelebrityGame
 	 */
 	public int getCelebrityGameSize()
 	{
-		return 0;
+		return celebGameList.size();
 	}
 
 	/**
@@ -138,7 +181,7 @@ public class CelebrityGame
 	 */
 	public String sendClue()
 	{
-		return null;
+		return gameCelebrity.getClue();
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package consumerLab;
+package Celebrity;
 import javax.swing.JFrame;
 
 public class SimpleGUIRunner
