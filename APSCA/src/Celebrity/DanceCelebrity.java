@@ -59,7 +59,7 @@ public class DanceCelebrity extends Celebrity
 	@Override
 	public String toString()
 	{
-		String dsc = "This is the poetry celebrity: " + getAnswer() + "\nThe clues are:\n";
+		String dsc = "This is the dance celebrity: " + getAnswer() + "\nThe clues are:\n";
 		
 		for (String word : super.getClue().split(","))
 		{

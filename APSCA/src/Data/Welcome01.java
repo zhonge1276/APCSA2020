@@ -1,4 +1,4 @@
-package Data;
+package Data
 import core.data.*;
 
 public class Welcome01 {

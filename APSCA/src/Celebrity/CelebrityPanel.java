@@ -110,8 +110,8 @@ public class CelebrityPanel extends JPanel
 		this.clueArea = new JTextArea("", 30, 20);
 		this.cluePane = new JScrollPane(clueArea);
 		this.guessField = new JTextField("Enter guess here", 30);
-		this.success = "You guessed correctly!!! \nNext Celebrity clue is: ";
-		this.tryAgain = "You have chosen poorly, try again!\nThe clue is: ";
+		this.success = "You have guessed correctly! \nThe next Celebrity clue is: ";
+		this.tryAgain = "You have chosen incorrectly, please try again!\nThe clue is: ";
 		this.seconds = 60;
 		this.countdownTimer = new Timer(1000, timerListener);
 

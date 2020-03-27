@@ -1,4 +1,4 @@
-ackage dataLab;
+package Data;
 import core.data.*;
 
 public class Welcome02_Object {

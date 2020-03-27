@@ -91,7 +91,7 @@ public class CelebrityGame
 		if(type.equals("Literature")) {
 			currentCelebrity = new LiteratureCelebrity(name, guess);
 		}
-		else if (type.equals("Poetry")) {
+		else if (type.equals("Dance")) {
 			currentCelebrity = new DanceCelebrity(name,guess);
 		}
 		else {
@@ -140,7 +140,7 @@ public class CelebrityGame
 		valid = false;
 		}
 		}
-		if (type.equalsIgnoreCase("poetry"))
+		if (type.equalsIgnoreCase(""))
 		{
 		String[] temp1 = clue.split(",");
 		if (temp1.length > 1)
