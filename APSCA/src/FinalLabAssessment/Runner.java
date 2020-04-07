@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class Runner {
 	public static void main(String[] args) {
 		Scanner a;
 		try {
