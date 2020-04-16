@@ -29,7 +29,7 @@ public class Runner {
 				System.out.println("\nGender: " + info[0]
 						+ "\nWeight: " + Integer.parseInt(info[1])
 						+ "\ntooOld: " + info[2]);
-				System.out.print("Season Speed List: ");
+				System.out.print("Season Speed List (mph): ");
 				Arrays.stream(speedAlt).forEach(s -> System.out.print(s + " "));
 			}
 			
@@ -40,12 +40,12 @@ public class Runner {
 				System.out.println(horse.toString());
 			}
 			
-			System.out.println("\n\n\nAnalysis of speed of each horse over the Season: ");
+			System.out.println("\n\n\nAnalysis of speed (mph) of each horse over the Season: ");
 			for (int i = 0; i < t.getNumHorses(); i++) {
 				System.out.println(t.getHorse(i).speedAna());
 			}
 			
-			System.out.println("\n\n\nHorses Ranked From Fastest to Slowest: ");
+			System.out.println("\n\n\nHorses Ranked From Fastest to Slowest (mph): ");
 			t.listSpeed();
 			
 			System.out.println("\n\n\nNumber of Record Breaking Days for each Horse (Over 40 mph Days!): ");

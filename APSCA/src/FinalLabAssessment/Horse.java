@@ -55,6 +55,6 @@ public class Horse {
 		return "\n"+name + "\nGender: " + stats.getGender()
 				+ "\nWeight: " + stats.getWeight()
 				+ "\nTooOld: " + stats.getTooOld()
-				+ "\nWeek Speed Records: " + tString;
+				+ "\nWeek Speed Records (mph): " + tString;
 	}
 }
