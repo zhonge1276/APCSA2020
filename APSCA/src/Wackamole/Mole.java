@@ -27,9 +27,10 @@ public class Mole extends JButton{
 	}
 	public void revive() {
 		if(!isAlive) {
-			final_life = MIN_LIFE + rand.nextInt(MAX_LIFE - MIN_LIFE + 1); //set final life 
+			final_life = MIN_LIFE + rand.nextInt(MAX_LIFE - MIN_LIFE + 1);  
 			isAlive = true; 
 			this.setBackground(Color.GREEN); 
+			//https://www.youtube.com/watch?v=eZrdU3BvI4E is where I found how to insert and resize images
 			ImageIcon image = new ImageIcon(getClass().getResource("mole.png"));
 			Image imagehold = image.getImage();
 			Image image2 = imagehold.getScaledInstance(350, 200, java.awt.Image.SCALE_SMOOTH);

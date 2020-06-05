@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import java.util.*;
 
-
+//figured out some JFrame components with help from Elevens
 public class Game extends JFrame implements ActionListener{
 	private static final int MAX_MOLES = 4; 
 	private static final String SCORE_PREFIX = "Score: "; 
@@ -28,7 +28,7 @@ public class Game extends JFrame implements ActionListener{
 	
 	
 	
-	
+	//found how to do message dialogs (for my introductory screen) on this site https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html
 	public static void main(String[] args) {
 		Game this_game = new Game(); 
 		JOptionPane.showMessageDialog(this_game, "Welcome to Wack-a-Mole! This game is made by Emily Zhong. \nInstructions: Click on a green space to get 10 points.\nThere are " + MAX_LEVEL + 
